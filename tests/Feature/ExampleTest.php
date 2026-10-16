@@ -15,7 +15,7 @@ class ExampleTest extends TestCase
         $response = $this->get('/');
 
         $response->assertOk()
-            ->assertSee('Formulir pendaftaran')
+            ->assertSee('Formuli pendaftaran')
             ->assertSee('Nama lengkap')
             ->assertSee('Nomor WhatsApp')
             ->assertSee('Pilih kategori tiket')
