@@ -23,7 +23,7 @@
         <section class="registration-form-panel" aria-labelledby="form-title">
             <div class="form-heading">
                 <p class="eyebrow"><span class="eyebrow-line"></span> PENDAFTARAN TIKET</p>
-                <h1 id="form-title">Formulir pendaftaran <span>tiket.</span></h1>
+                <h1 id="form-title">Formuli pendaftaran <span>tiket.</span></h1>
                 <p class="form-intro">Isi detail di bawah untuk memilih tiketmu ke Suara Kota Festival.</p>
             </div>
 
