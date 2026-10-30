@@ -24,32 +24,49 @@
             <div class="form-heading">
                 <p class="eyebrow"><span class="eyebrow-line"></span> PENDAFTARAN TIKET</p>
                 <h1 id="form-title">Formulir pendaftaran <span>tiket.</span></h1>
-                <p class="form-intro">IsiSS detail di bawah untuk memilih tiketmu ke Suara Kota Festival.</p>
+                <p class="form-intro">Isi detail di bawah untuk memilih tiketmu ke Suara Kota Festival.</p>
             </div>
 
-            <form class="ticket-form" onsubmit="return false;">
+            <form class="ticket-form" method="POST" action="{{ route('ticket-registrations.store') }}">
+                @csrf
+
+                @if (session('status'))
+                    <p class="form-feedback form-feedback-success" role="status">{{ session('status') }}</p>
+                @endif
+
+                @if ($errors->any())
+                    <div class="form-feedback form-feedback-error" role="alert">
+                        <p>Periksa kembali data yang kamu masukkan:</p>
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
                 <fieldset class="form-section">
                     <legend><span class="section-number">01</span> Data pemesan</legend>
                     <div class="field-grid">
                         <label class="form-field" for="full-name">
                             <span>Nama lengkap</span>
-                            <input id="full-name" name="full-name" type="text" placeholder="Nama sesuai identitas" autocomplete="name">
+                            <input id="full-name" name="full_name" type="text" placeholder="Nama sesuai identitas" autocomplete="name" value="{{ old('full_name') }}" required>
                         </label>
                         <label class="form-field" for="email">
                             <span>Alamat email</span>
-                            <input id="email" name="email" type="email" placeholder="nama@email.com" autocomplete="email">
+                            <input id="email" name="email" type="email" placeholder="nama@email.com" autocomplete="email" value="{{ old('email') }}" required>
                         </label>
                         <label class="form-field" for="phone">
                             <span>Nomor WhatsApp</span>
-                            <input id="phone" name="phone" type="tel" placeholder="08xx xxxx xxxx" autocomplete="tel">
+                            <input id="phone" name="phone" type="tel" placeholder="08xx xxxx xxxx" autocomplete="tel" value="{{ old('phone') }}" required>
                         </label>
                         <label class="form-field" for="ticket-quantity">
                             <span>Jumlah tiket</span>
-                            <select id="ticket-quantity" name="ticket-quantity">
-                                <option value="1">1 tiket</option>
-                                <option value="2">2 tiket</option>
-                                <option value="3">3 tiket</option>
-                                <option value="4">4 tiket</option>
+                            <select id="ticket-quantity" name="ticket_quantity">
+                                <option value="1" @selected(old('ticket_quantity', '1') == '1')>1 tiket</option>
+                                <option value="2" @selected(old('ticket_quantity') == '2')>2 tiket</option>
+                                <option value="3" @selected(old('ticket_quantity') == '3')>3 tiket</option>
+                                <option value="4" @selected(old('ticket_quantity') == '4')>4 tiket</option>
                             </select>
                         </label>
                     </div>
@@ -59,7 +76,7 @@
                     <legend><span class="section-number">02</span> Pilih kategori tiket</legend>
                     <div class="ticket-options">
                         <label class="ticket-option">
-                            <input type="radio" name="ticket-category" value="festival" checked>
+                            <input type="radio" name="ticket_category" value="festival" @checked(old('ticket_category', 'festival') === 'festival') required>
                             <span class="ticket-option-content">
                                 <span class="ticket-option-top"><span class="ticket-name">Festival</span><span class="ticket-radio" aria-hidden="true"></span></span>
                                 <span class="ticket-description">Akses area festival</span>
@@ -67,7 +84,7 @@
                             </span>
                         </label>
                         <label class="ticket-option">
-                            <input type="radio" name="ticket-category" value="plus">
+                            <input type="radio" name="ticket_category" value="plus" @checked(old('ticket_category') === 'plus')>
                             <span class="ticket-option-content">
                                 <span class="ticket-option-top"><span class="ticket-name">Festival Plus</span><span class="ticket-radio" aria-hidden="true"></span></span>
                                 <span class="ticket-description">Akses prioritas + lounge</span>
@@ -79,7 +96,7 @@
 
                 <div class="form-footer">
                     <p class="secure-note"><span class="secure-mark" aria-hidden="true">✓</span> Data pemesan tetap aman</p>
-                    <button class="continue-button" type="button">Lanjutkan <span aria-hidden="true">→</span></button>
+                    <button class="continue-button" type="submit">Kirim pendaftaran <span aria-hidden="true">→</span></button>
                 </div>
             </form>
         </section>

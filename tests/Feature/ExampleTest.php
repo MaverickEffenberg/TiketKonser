@@ -15,10 +15,10 @@ class ExampleTest extends TestCase
         $response = $this->get('/');
 
         $response->assertOk()
-            ->assertSee('Formuli pendaftaran')
+            ->assertSee('Formulir pendaftaran')
             ->assertSee('Nama lengkap')
             ->assertSee('Nomor WhatsApp')
             ->assertSee('Pilih kategori tiket')
-            ->assertSee('type="button"', false);
+            ->assertSee('type="submit"', false);
     }
 }

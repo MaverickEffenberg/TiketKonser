@@ -164,6 +164,37 @@ select {
     line-height: 1.7;
 }
 
+.form-feedback {
+    margin: 0;
+    padding: 14px 16px;
+    border: 1px solid;
+    border-radius: 3px;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.form-feedback-success {
+    border-color: #c9ddca;
+    background: #f1f8f1;
+    color: #355b39;
+}
+
+.form-feedback-error {
+    border-color: #f0c7be;
+    background: #fff5f2;
+    color: #8d3e2d;
+}
+
+.form-feedback p {
+    margin: 0 0 5px;
+    font-weight: 700;
+}
+
+.form-feedback ul {
+    margin: 0;
+    padding-left: 18px;
+}
+
 .ticket-form {
     display: grid;
     gap: 28px;
