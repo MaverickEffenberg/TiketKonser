@@ -46,15 +46,15 @@
                 @endif
 
                 <fieldset class="form-section">
-                    <legend><span class="section-number">01</span> Data pemesan</legend>
+                    <legend><span class="section-number">01</span> Data mahasiswa</legend>
                     <div class="field-grid">
                         <label class="form-field" for="full-name">
-                            <span>Nama lengkap</span>
+                            <span>Nama mahasiswa</span>
                             <input id="full-name" name="full_name" type="text" placeholder="Nama sesuai identitas" autocomplete="name" value="{{ old('full_name') }}" required>
                         </label>
-                        <label class="form-field" for="email">
-                            <span>Alamat email</span>
-                            <input id="email" name="email" type="email" placeholder="nama@email.com" autocomplete="email" value="{{ old('email') }}" required>
+                        <label class="form-field" for="student-email">
+                            <span>Student Email</span>
+                            <input id="student-email" name="student_email" type="email" placeholder="nama@email.com" autocomplete="email" value="{{ old('student_email') }}" required>
                         </label>
                         <label class="form-field" for="phone">
                             <span>Nomor WhatsApp</span>

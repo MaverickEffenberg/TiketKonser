@@ -16,7 +16,8 @@ class ExampleTest extends TestCase
 
         $response->assertOk()
             ->assertSee('Formulir pendaftaran')
-            ->assertSee('Nama lengkap')
+            ->assertSee('Nama mahasiswa')
+            ->assertSee('Student Email')
             ->assertSee('Nomor WhatsApp')
             ->assertSee('Pilih kategori tiket')
             ->assertSee('type="submit"', false);

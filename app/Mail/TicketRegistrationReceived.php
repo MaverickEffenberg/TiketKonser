@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Models\TicketRegistration;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
@@ -12,15 +13,12 @@ class TicketRegistrationReceived extends Mailable
 {
     use Queueable, SerializesModels;
 
-    /**
-     * @param  array{full_name: string, email: string, phone: string, ticket_quantity: int|string, ticket_category: string}  $registration
-     */
-    public function __construct(public array $registration) {}
+    public function __construct(public TicketRegistration $registration) {}
 
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Pendaftaran Tiket Suara Kota',
+            subject: 'Konfirmasi Pendaftaran Suara Kota Festival',
         );
     }
 
@@ -28,7 +26,6 @@ class TicketRegistrationReceived extends Mailable
     {
         return new Content(
             view: 'mail.ticket-registration',
-            with: ['registration' => $this->registration],
         );
     }
 }
