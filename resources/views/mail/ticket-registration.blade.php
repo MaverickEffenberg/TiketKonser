@@ -2,12 +2,18 @@
 <html lang="id">
 <head>
     <meta charset="utf-8">
-    <title>Pendaftaran Tiket Suara Kota</title>
+    <title>Konfirmasi Pendaftaran Suara Kota Festival</title>
 </head>
 <body>
-    <h1>Konfirmasi Pendaftaran Suara Kota Festival</h1>
+    <h1>Suara Kota Festival</h1>
+    <h2>Konfirmasi Pendaftaran Tiket</h2>
+
     <p>Halo {{ $registration->full_name }},</p>
-    <p>Pendaftaran tiketmu berhasil. Berikut detail pendaftaranmu:</p>
+
+    <p>
+        Pendaftaran tiketmu melalui Suara Kota Festival berhasil.
+        Berikut detail pendaftaranmu:
+    </p>
 
     <dl>
         <dt>Nama lengkap</dt>
@@ -27,5 +33,23 @@
     </dl>
 
     <p>Terima kasih telah mendaftar. Sampai jumpa di festival!</p>
+
+    <p>
+        Salam,<br>
+        Tim Suara Kota Festival
+    </p>
+
+    <hr>
+
+    <p>
+        Email ini dikirim secara otomatis oleh website
+        <strong>Suara Kota Festival</strong>.
+    </p>
+
+    <p>
+        <a href="{{ config('app.url') }}">
+            Kunjungi Website Suara Kota Festival
+        </a>
+    </p>
 </body>
 </html>
