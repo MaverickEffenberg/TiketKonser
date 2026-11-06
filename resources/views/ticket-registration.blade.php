@@ -24,7 +24,7 @@
             <div class="form-heading">
                 <p class="eyebrow"><span class="eyebrow-line"></span> PENDAFTARAN TIKET</p>
                 <h1 id="form-title">Formulir pendaftaran <span>tiket.</span></h1>
-                <p class="form-intro">Isi detail di bawah untuk memilih tiketmu ke Suara Kota Festival.</p>
+                <p class="form-intro">IsiSSSS detail di bawah untuk memilih tiketmu ke Suara Kota Festival.</p>
             </div>
 
             <form class="ticket-form" method="POST" action="{{ route('ticket-registrations.store') }}">
