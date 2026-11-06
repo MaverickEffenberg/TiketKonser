@@ -3,13 +3,7 @@ name: Laravel 13 CI/CD Deployment
 
 on:
   push:
-    branches:
-      - main
-
-  workflow_dispatch:
-
-permissions:
-  contents: read
+    branches: ["main"]
 
 jobs:
   laravel-tests:
@@ -38,7 +32,8 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.4'
-          extensions: mbstring, xml, ctype, iconv, pdo_mysql, mysql, zip, bcmath, intl, curl
+          extensions: mbstring, xml, ctype, iconv, pdo_mysql, mysql, bcmath, zip, intl, curl
+          tools: composer:v2
           coverage: none
 
       - name: Setup Node.js
@@ -47,10 +42,8 @@ jobs:
           node-version: '22'
           cache: npm
 
-      - name: Setup Environment
-        run: |
-          cp .env.example .env
-          php artisan key:generate
+      - name: Copy Environment File
+        run: cp .env.example .env
 
       - name: Cache Composer Dependencies
         uses: actions/cache@v4
@@ -61,7 +54,10 @@ jobs:
             ${{ runner.os }}-composer-
 
       - name: Install Composer Dependencies
-        run: composer install --prefer-dist --no-interaction --no-progress
+        run: composer install --prefer-dist --no-ansi --no-interaction --no-progress
+
+      - name: Generate Application Key
+        run: php artisan key:generate
 
       - name: Install NPM Dependencies
         run: npm ci
@@ -94,8 +90,8 @@ jobs:
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          port: ${{ secrets.SSH_PORT || 22 }}
+          password: ${{ secrets.SSH_PASSWORD }}
+          port: 22
           script_stop: true
           script: |
             set -e
@@ -105,8 +101,8 @@ jobs:
             echo "Pulling latest code..."
             git pull --ff-only origin main
 
-            echo "Installing production dependencies..."
-            composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist
+            echo "Installing production Composer dependencies..."
+            composer install --no-dev --optimize-autoloader --prefer-dist --no-interaction
 
             echo "Installing frontend dependencies..."
             npm ci
