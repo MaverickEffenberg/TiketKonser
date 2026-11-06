@@ -32,7 +32,7 @@ jobs:
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
       with:
-        php-version: ${{ matrix.php }}
+        php-version: '8.5'
         extensions: mbstring, xml, ctype, iconv, mysql, zip, pdo_mysql, bcmath, intl, curl
         coverage: none
 
